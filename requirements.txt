@@ -2,3 +2,4 @@ bitcoin
 cbor2
 cbor
 cardano
+bech32
