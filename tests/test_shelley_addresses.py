@@ -6,6 +6,8 @@ def mybech32_decode(bech: str) -> bytes:
     return bytes(map(lambda b: int(b, 2), map(''.join, zip(*[iter(s)] * 8))))
 
 
+_OPERATOR_PAY_ADDRESS = 'addr_test1vphdsk2uslrft6g8z3qlhvl956kxmrtqzn3helz6duv8nkcfetwqv'
+_OPERATOR_BASE_ADDRESS = 'addr_test1qphdsk2uslrft6g8z3qlhvl956kxmrtqzn3helz6duv8nklyfgpnf9d9h7ap3prcdk6d9njl6lu6tlk52sem40agx4lq4dx5t5'
 
 _ADDRESSES = (
     ('type-00', 'addr1qx2fxv2umyhttkxyxp8x0dlpdt3k6cwng5pxj3jhsydzer3n0d3vllmyqwsx5wktcd8cc3sq835lu7drv2xwl2wywfgse35a3x'),
@@ -31,6 +33,8 @@ _ADDRESSES_TESTNET = (
     ('type-07', 'addr_test1wrphkx6acpnf78fuvxn0mkew3l0fd058hzquvz7w36x4gtcl6szpr'),
     ('type-08', 'stake_test1uqehkck0lajq8gr28t9uxnuvgcqrc6070x3k9r8048z8y5gssrtvn'),
     ('type-09', 'stake_test17rphkx6acpnf78fuvxn0mkew3l0fd058hzquvz7w36x4gtcljw6kf'),
+    ('operator_pay', _OPERATOR_PAY_ADDRESS),
+    ('operator_base', _OPERATOR_BASE_ADDRESS),
 )
 if __name__ == '__main__':
     # Verification key
