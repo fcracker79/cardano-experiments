@@ -2,6 +2,8 @@ import pprint
 
 import cbor
 
+from tests import check_assertion_enabled
+
 _STAKE_POOL_SIGNING_KEY = '58200640315f333b166dbac1ac0ce215b1e5f34f1b6a0d6488de68bffa13be02960c'
 _STAKE_POOL_VERIFICATION_KEY = '58200ca8cf84a7174ec4a688f160843723d57fae76790b8d361b36f9a33d1418ae89'
 _NODE_OPERATIONAL_CERT_ISSUE_COUNTER = '820058200ca8cf84a7174ec4a688f160843723d57fae76790b8d361b36f9a33d1418ae89'
@@ -32,17 +34,8 @@ def _bprint(*a, b: bytes) -> None:
         print(*a, f'{b.hex()} ({len(b)} bytes)')
 
 
-def _check_assertion_enabled():
-    try:
-        assert False
-        # noinspection PyUnreachableCode
-        raise ValueError('Please enable assertions')
-    except AssertionError:
-        return
-
-
 if __name__ == '__main__':
-    _check_assertion_enabled()
+    check_assertion_enabled()
     _bprint('Stake pool signing key:     ', b=cbor.loads(_STAKE_POOL_SIGNING_KEY))
     stake_pool_verification_key = cbor.loads(_STAKE_POOL_VERIFICATION_KEY)
     _bprint('Stake pool verification key:', b=stake_pool_verification_key)

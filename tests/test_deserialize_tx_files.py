@@ -5,10 +5,9 @@ import os
 import bech32
 import cbor
 
+from tests import check_assertion_enabled
 
-_ADDR_PREFIXES = {
-    0: ''
-}
+_EXPECTED_TX_HASH = bytes.fromhex('e7b9a137e8c3cd3dda1c6219d990316d2bf0f21c6debbfe2ddffd9e6cd87344c')
 
 
 def mybech32encode(d: bytes) -> str:
@@ -34,7 +33,9 @@ def _print(*a, **kw):
 
 def _print_tx(tx: str) -> None:
     tx_decoded, signatures, mah = cbor.loads(bytes.fromhex(tx))
-    print('TX hash:', hashlib.blake2b(cbor.dumps(tx_decoded), digest_size=256 // 8).hexdigest())
+    tx_hash = hashlib.blake2b(cbor.dumps(tx_decoded), digest_size=256 // 8).digest()
+    assert _EXPECTED_TX_HASH == tx_hash
+    print('TX hash:', tx_hash.hex())
     print('tx_decoded', tx_decoded)
     print('mah', mah)
     assert mah is None
@@ -66,6 +67,7 @@ def _print_tx(tx: str) -> None:
 
 
 if __name__ == '__main__':
+    check_assertion_enabled()
     print('FILE tx.raw')
     _print_tx_file('tx.raw')
     print('FILE tx.signed')

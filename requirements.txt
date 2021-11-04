@@ -3,3 +3,4 @@ cbor2
 cbor
 cardano
 bech32
+pynacl
